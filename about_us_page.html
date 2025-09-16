@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - IonyVerse Labs</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Font Imports - Identical to home page */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap');
+        
+        /* Global Styles - Identical to home page */
+        :root {
+            --primary-dark: #121212;
+            --secondary-dark: #1e1e1e;
+            --tertiary-dark: #2d2d2d;
+            --accent-pink: #ffbde0;
+            --light-pink: #ffd6ea;
+            --off-white: #f8f8f8;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--secondary-dark);
+            color: var(--off-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Header & Navigation - Identical to home page */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            background-color: rgba(18, 18, 18, 0.95);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            padding: 1rem 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--off-white);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--accent-pink);
+        }
+        
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            background-color: var(--off-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        nav a {
+            color: var(--off-white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--accent-pink);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent-pink);
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+        
+        .contact-btn {
+            background-color: transparent;
+            border: 1px solid var(--accent-pink);
+            color: var(--accent-pink);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .contact-btn:hover {
+            background-color: var(--accent-pink);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 189, 224, 0.3);
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            height: 3px;
+            width: 100%;
+            background-color: var(--off-white);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        
+        /* Hero Section - Adapted from home page style */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background-color: var(--primary-dark);
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect width="1200" height="800" fill="%23121212"/><circle cx="200" cy="150" r="100" fill="%23ffbde0" opacity="0.1"/><circle cx="1000" cy="600" r="150" fill="%23ffbde0" opacity="0.05"/></svg>');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero h1 span, .hero p span {
+            color: var(--accent-pink);
+        }
+        
+        .curved-bg {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            z-index: 1;
+        }
+        
+        /* About Section - Identical styling to home page */
+        .about {
+            padding: 100px 0;
+            background-color: var(--secondary-dark);
+            position: relative;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed var(--accent-pink);
+            border-radius: 15px;
+            z-index: -1;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-pink);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--off-white);
+            opacity: 0.9;
+        }
+        
+        /* Services Section Style for Leadership */
+        .leadership {
+            padding: 100px 0;
+            background-color: var(--secondary-dark);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-pink);
+        }
+        
+        .section-title p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--off-white);
+            opacity: 0.8;
+        }
+        
+        .leadership-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+        
+        /* Leader Cards - Fixed height and alignment */
+        .leader-card {
+            background-color: var(--tertiary-dark);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            width: 300px;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        
+        .leader-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 189, 224, 0.1), transparent);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+            z-index: 0;
+        }
+        
+        .leader-card:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .leader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .leader-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .leader-image {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(45, 45, 45, 0.8);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            border: 3px solid rgba(120, 120, 120, 0.6);
+        }
+        
+        .leader-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 25%;
+            border-radius: 50%;
+        }
+        
+        .leader-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-pink);
+        }
+        
+        .leader-title {
+            color: var(--off-white);
+            opacity: 0.7;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .learn-more {
+            color: var(--off-white);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            margin-top: auto;
+            width: 100%;
+        }
+        
+        .learn-more:hover {
+            gap: 10px;
+        }
+        
+        /* Modal Styles - Enhanced elegance with transparency */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(20px);
+        }
+        
+        .modal-content {
+            position: relative;
+            background-color: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(25px);
+            margin: 3% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 85%;
+            max-width: 900px;
+            max-height: 85vh;
+            overflow: hidden;
+            animation: modalSlideIn 0.4s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 189, 224, 0.3);
+        }
+        
+        @keyframes modalSlideIn {
+            from { 
+                transform: translateY(-30px) scale(0.95); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translateY(0) scale(1); 
+                opacity: 1; 
+            }
+        }
+        
+        .modal-header {
+            background: transparent;
+            backdrop-filter: blur(15px);
+            padding: 2rem;
+            color: var(--off-white);
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 189, 224, 0.3);
+            background-color: rgba(45, 45, 45, 0.4);
+        }
+        
+        .modal-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+            color: rgba(255, 189, 224, 0.95);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-body {
+            display: flex;
+            padding: 3rem;
+            gap: 3rem;
+            align-items: flex-start;
+            background-color: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(10px);
+            overflow-y: auto;
+            max-height: calc(85vh - 120px);
+        }
+        
+        .modal-image {
+            flex: 0 0 220px;
+        }
+        
+        .modal-image img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            object-position: center 30%;
+            border-radius: 50%;
+            border: 3px solid rgba(120, 120, 120, 0.6);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-text {
+            flex: 1;
+        }
+        
+        .modal-text p {
+            font-size: 1rem;
+            line-height: 1.8;
+            opacity: 0.85;
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            color: rgba(248, 248, 248, 0.9);
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .modal-text p:first-child {
+            font-weight: 500;
+            color: rgba(255, 189, 224, 0.9);
+            opacity: 1;
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: var(--off-white);
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(45, 45, 45, 0.3);
+        }
+        
+        .close:hover {
+            background-color: rgba(45, 45, 45, 0.6);
+            transform: scale(1.1);
+            color: var(--accent-pink);
+        }
+        
+        /* Footer - Identical to home page */
+        footer {
+            background-color: var(--secondary-dark);
+            padding: 5rem 0 1rem;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo h2 {
+            font-size: 1.8rem;
+        }
+        
+        .footer-logo span {
+            color: var(--accent-pink);
+        }
+        
+        .footer-logo-img {
+            width: 40px;
+            height: 40px;
+            background-color: var(--off-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .footer-about p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--tertiary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--off-white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent-pink);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        .footer-heading {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent-pink);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li:not(:last-child) {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-link {
+            color: var(--off-white);
+            opacity: 0.7;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-link:hover {
+            color: var(--accent-pink);
+            opacity: 1;
+            padding-left: 5px;
+        }
+        
+        .contact-info div {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info i {
+            color: var(--accent-pink);
+        }
+        
+        .contact-info a {
+            color: var(--off-white);
+            opacity: 0.7;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-info a:hover {
+            color: var(--accent-pink);
+            opacity: 1;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(248, 248, 248, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-pink), transparent);
+            margin: 2rem 0;
+        }
+        
+        /* Fairy/Vintage Elements - Identical to home page */
+        .fairy-accent {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 189, 224, 0.2) 0%, transparent 70%);
+            filter: blur(20px);
+            z-index: 0;
+        }
+        
+        /* Animations - Identical to home page */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .pulse {
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .leadership-grid {
+                justify-content: center;
+                gap: 1.5rem;
+            }
+            
+            .leader-card {
+                width: 280px;
+            }
+            
+            .about-content, .footer-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .about-image::before {
+                top: -15px;
+                left: -15px;
+            }
+            
+            .modal-body {
+                flex-direction: column;
+                padding: 2rem;
+                gap: 2rem;
+            }
+            
+            .modal-image {
+                flex: none;
+                align-self: center;
+                width: 200px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header .container {
+                padding: 0 1rem;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: var(--secondary-dark);
+                width: 100%;
+                padding: 2rem;
+                transform: translateY(-150%);
+                transition: var(--transition);
+                opacity: 0;
+                visibility: hidden;
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .leadership-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .leader-card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+            
+            .modal-body {
+                padding: 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-img">
+                        <img src="logo.png" alt="IonyVerse Labs Logo" width="40" height="40">
+                        
+                    </div>
+                    <h1>Iony<span>Verse</span> Labs</h1>
+                </a>
+                
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="Home.html">Home</a></li>
+                        <li><a href="Home.html#services">Services</a></li>
+                        <li><a href="#" class="active">About Us</a></li>
+                        <!--<li><a href="#solutions">Solutions</a></li>
+                        <li><a href="#blog">Blog</a></li>-->
+                    </ul>
+                </nav>
+                
+                <button class="contact-btn">Contact Us</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="fairy-accent" style="top: 20%; left: 10%;"></div>
+        <div class="fairy-accent" style="bottom: 30%; right: 15%;"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1>About <span>IonyVerse Labs</span></h1>
+                <p>Discover the story behind our <span>innovative approach</span> to cybersecurity, where elegance meets excellence in digital protection.</p>
+            </div>
+        </div>
+        
+        <svg class="curved-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100">
+            <path fill="#1e1e1e" fill-opacity="1" d="M0,32L60,37.3C120,43,240,53,360,53.3C480,53,600,43,720,48C840,53,960,75,1080,80C1200,85,1320,75,1380,69.3L1440,64L1440,100L1380,100C1320,100,1200,100,1080,100C960,100,840,100,720,100C600,100,480,100,360,100C240,100,120,100,60,100L0,100Z"></path>
+        </svg>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="Video.mp4" alt="IonyVerse Labs Team" class="pulse">
+                </div>
+                
+                <div class="about-text">
+                    <h2>Our Vision & Mission</h2>
+                    <p>At IonyVerse Labs, we believe cybersecurity should be both powerful and elegant. Founded by a team of passionate security experts, we've created a unique blend of cutting-edge protection mechanisms with an approachable and sophisticated service delivery.</p>
+                    <p>Our holistic approach combines technical excellence with beautiful, intuitive solutions that don't compromise on security. We work with businesses of all sizes to craft personalized security strategies that align with their specific needs and aesthetic values.</p>
+                    <p>With over 15 years of combined experience in cybersecurity, our team has protected countless organizations from evolving digital threats while maintaining the highest standards of professionalism and elegance in our service delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Leadership Section -->
+    <section id="leadership" class="leadership">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Leadership</h2>
+                <p>Meet the visionary leaders who guide IonyVerse Labs with their expertise, passion, and commitment to excellence in cybersecurity innovation.</p>
+            </div>
+            
+            <div class="leadership-grid">
+                <div class="leader-card" onclick="openModal('chairmanModal')">
+                    <div class="leader-content">
+                        <div class="leader-image">
+                            <img src="Nishantha Image.jpeg" alt="Chairman">
+                        </div>
+                        <h3>Nishantha Kiriella</h3>
+                        <p class="leader-title">CHAIRMAN</p>
+                    </div>
+                    <a href="#" class="learn-more"> CHAIRMAN'S NOTE   <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="leader-card" onclick="openModal('founderModal')">
+                    <div class="leader-content">
+                        <div class="leader-image">
+                            <img src="Ayani Image.jpeg" alt="Founder">
+                        </div>
+                        <h3>Ayani Kiriella</h3>
+                        <p class="leader-title">OWNER & FOUNDER</p>
+                    </div>
+                    <a href="#" class="learn-more">FOUNDER'S NOTE    <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="leader-card" onclick="openModal('cofounderModal')">
+                    <div class="leader-content">
+                        <div class="leader-image">
+                            <img src="Kaveesha Image.jpeg" alt="Co-Founder">
+                        </div>
+                        <h3>Kaveesha Senevirathna</h3>
+                        <p class="leader-title">CO-FOUNDER & CEO</p>
+                    </div>
+                    <a href="#" class="learn-more">CO-FOUNDER'S NOTE    <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Chairman Modal -->
+    <div id="chairmanModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('chairmanModal')">&times;</span>
+                <h2>Message from the Chairman</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="Nishantha Image.jpeg" alt="Chairman">
+                </div>
+                <div class="modal-text">
+                    <p>Dear Valued Partners and Stakeholders,</p>
+                    <p>As Chairman of IonyVerse Labs, I am proud to lead an organization that stands at the forefront of cybersecurity innovation. Our commitment to excellence and elegant solutions has been the cornerstone of our success since our inception.</p>
+                    <p>In today's rapidly evolving digital landscape, we understand that security is not just about protection—it's about enabling trust, fostering innovation, and creating sustainable growth for our clients. Our approach combines the sophistication of haute couture with the reliability of military-grade security.</p>
+                    <p>Our team's dedication to combining sophisticated technology with aesthetic design principles sets us apart in an industry often characterized by complexity and intimidation. We believe that effective cybersecurity should be both powerful and beautiful, accessible yet comprehensive.</p>
+                    <p>Looking ahead, we remain committed to our founding principles while embracing emerging technologies that will shape the future of digital security. Our vision extends beyond mere protection to empowerment—enabling our clients to thrive in an interconnected world.</p>
+                    <p>Thank you for your continued trust in IonyVerse Labs. Together, we will continue to shape the future of cybersecurity with elegance, innovation, and unwavering excellence.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Founder Modal -->
+    <div id="founderModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('founderModal')">&times;</span>
+                <h2>Message from the Founder</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="Ayani Image.jpeg" alt="Founder">
+                </div>
+                <div class="modal-text">
+                    <p>Dear IonyVerse Community,</p>
+                    <p>When I founded IonyVerse Labs, my vision was both simple and revolutionary: to transform cybersecurity from a necessary burden into an elegant solution that businesses could embrace with confidence and pride.</p>
+                    <p>The inspiration came from observing the disconnect between the critical importance of cybersecurity and the often intimidating, complex ways it was presented to businesses. I believed then, as I do now, that security solutions should inspire confidence through their sophistication, not intimidate through complexity.</p>
+                    <p>Our journey began with a fundamental question: Why can't cybersecurity be beautiful? This philosophy has guided every decision, every innovation, and every client relationship we've built. We've proven that cutting-edge protection doesn't require sacrificing elegance or user experience.</p>
+                    <p>Today, I'm incredibly proud of what we've achieved together. Our unique approach to blending aesthetic excellence with technical superiority has not only protected our clients but has also redefined industry standards for what cybersecurity can and should be.</p>
+                    <p>As we continue to grow and innovate, our core values remain unchanged: elegance in design, excellence in execution, and unwavering commitment to our clients' success. The future of cybersecurity is not just secure—it's beautiful, intuitive, and empowering.</p>
+                    <p>Thank you for being part of our journey. Together, we're not just securing digital futures—we're making them magnificent.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Co-Founder Modal -->
+    <div id="cofounderModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('cofounderModal')">&times;</span>
+                <h2>Message from the Co-Founder</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="Kaveesha Image.jpeg" alt="Co-Founder">
+                </div>
+                <div class="modal-text">
+                    <p>Dear Clients and Technology Partners,</p>
+                    <p>As Co-Founder and Chief Technology Officer of IonyVerse Labs, I'm passionate about pushing the boundaries of what's possible in cybersecurity technology. Our technical excellence is not just about advanced algorithms and sophisticated protocols—it's about creating solutions that work seamlessly in real-world environments while maintaining the highest levels of security.</p>
+                    <p>Every line of code we write, every system we architect, and every security protocol we implement is designed with both functionality and elegance in mind. We believe that true technical excellence lies not in creating complex systems, but in making complex security simple, intuitive, and beautiful.</p>
+                    <p>Our research and development philosophy centers on anticipatory innovation. We don't just respond to current threats—we anticipate future challenges and develop solutions that will protect our clients years ahead. From AI-powered threat detection to quantum-resistant encryption, we're consistently at the forefront of technological advancement.</p>
+                    <p>What sets us apart is our commitment to translating cutting-edge research into practical, elegant solutions. We bridge the gap between academic cybersecurity research and real-world business needs, ensuring that our innovations are not just theoretically sound but practically valuable.</p>
+                    <p>Our technical team embodies the perfect fusion of scientific rigor and creative problem-solving. We approach each challenge not just as a technical problem to solve, but as an opportunity to create something both secure and beautiful.</p>
+                    <p>The future of cybersecurity is incredibly exciting, with emerging technologies offering unprecedented opportunities for innovation. I'm proud to lead our technical vision as we continue to redefine what's possible in digital security.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="footer-logo-img">
+                             <img src="logo.png" alt="IonyVerse Labs Logo" width="40" height="40">
+                            
+                        </div>
+                        <h2>Iony<span>Verse</span> Labs</h2>
+                    </div>
+                    <p>Pioneering elegant cybersecurity solutions that blend sophisticated protection with aesthetic design to secure your digital presence.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/ionyverse-labs-618174362?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/ionyverse_labs?igsh=MXF3YWgzZHNoMDV3ZQ==" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-wrapper">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="Home.html#services" class="footer-link">Services</a></li>
+                        <!--<li><a href="#" class="footer-link">Solutions</a></li>
+                        <li><a href="#" class="footer-link">About Us</a></li>
+                        <li><a href="#" class="footer-link">Blog</a></li>
+                        <li><a href="#" class="footer-link">Careers</a></li>-->
+                    </ul>
+                </div>
+                
+                <div class="footer-links-wrapper">
+                    <h3 class="footer-heading">Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="HTML Threat 3.html" class="footer-link">Threat Intelligence</a></li>
+                        <li><a href="HTML Secure 1.html" class="footer-link">Secure Infrastructure</a></li>
+                        <li><a href="#" class="footer-link">Application Security</a></li>
+                        <li><a href="#" class="footer-link">Identity Protection</a></li>
+                        <li><a href="#" class="footer-link">Cloud Security</a></li>
+                    </ul>
+                </div>
+                
+                <div class="contact-info">
+                    <h3 class="footer-heading">Contact Info</h3>
+                    <div>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span><br></span>
+                    </div>
+                    <div>
+                        <i class="fas fa-phone"></i>
+                        <a href=""></a>
+                    </div>
+                    <div>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:info@ionyverselabs.com">info@ionyverselabs.com</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 IonyVerse Labs. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Navigation Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Modal Functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Add click animation to the card
+            event.currentTarget.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                event.currentTarget.style.transform = '';
+            }, 150);
+        }
+        
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close modal with ESC key
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.leader-card, .about-text, .about-image').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+        
+        // Add staggered animation delay for leader cards
+        document.querySelectorAll('.leader-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.2}s`;
+        });
+        
+        // Enhanced hover effects for leader cards
+        document.querySelectorAll('.leader-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+        
+        // Prevent link clicks from triggering modal when clicking the learn-more link
+        document.querySelectorAll('.learn-more').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const modalId = this.closest('.leader-card').getAttribute('onclick').match(/'(.*)'/)[1];
+                openModal(modalId);
+            });
+        });
+    </script>
+</body>
+</html>

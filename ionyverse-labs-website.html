@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IonyVerse Labs - Cybersecurity Solutions</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Font Imports */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap');
+        
+        /* Global Styles */
+        :root {
+            --primary-dark: #121212;
+            --secondary-dark: #1e1e1e;
+            --tertiary-dark: #2d2d2d;
+            --accent-pink: #ffbde0;
+            --light-pink: #ffd6ea;
+            --off-white: #f8f8f8;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--off-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            background-color: rgba(18, 18, 18, 0.95);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            padding: 1rem 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--off-white);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--accent-pink);
+        }
+        
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            background-color: var(--off-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        nav a {
+            color: var(--off-white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        nav a:hover {
+            color: var(--accent-pink);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent-pink);
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .contact-btn {
+            background-color: transparent;
+            border: 1px solid var(--accent-pink);
+            color: var(--accent-pink);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .contact-btn:hover {
+            background-color: var(--accent-pink);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 189, 224, 0.3);
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            height: 3px;
+            width: 100%;
+            background-color: var(--off-white);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background-color: var(--primary-dark);
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/api/placeholder/1200/800');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero h1 span, .hero p span {
+            color: var(--accent-pink);
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .primary-btn {
+            padding: 0.8rem 2rem;
+            background: linear-gradient(45deg, var(--accent-pink), #ff85c2);
+            border: none;
+            border-radius: 30px;
+            color: var(--primary-dark);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(255, 189, 224, 0.4);
+        }
+        
+        .secondary-btn {
+            padding: 0.8rem 2rem;
+            background-color: transparent;
+            border: 1px solid var(--off-white);
+            border-radius: 30px;
+            color: var(--off-white);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        
+        .secondary-btn:hover {
+            background-color: var(--off-white);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(248, 248, 248, 0.2);
+        }
+        
+        .curved-bg {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            z-index: 1;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: var(--secondary-dark);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-pink);
+        }
+        
+        .section-title p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--off-white);
+            opacity: 0.8;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .service-card {
+            background-color: var(--tertiary-dark);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 189, 224, 0.1), transparent);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+            z-index: 0;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 189, 224, 0.1);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .service-icon i {
+            color: var(--accent-pink);
+            font-size: 1.8rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .service-card p {
+            color: var(--off-white);
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .learn-more {
+            color: var(--accent-pink);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+        }
+        
+        .learn-more:hover {
+            gap: 10px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background-color: var(--primary-dark);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed var(--accent-pink);
+            border-radius: 15px;
+            z-index: -1;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-pink);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--off-white);
+            opacity: 0.9;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-num {
+            font-size: 2.5rem;
+            font-weight: 600;
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--accent-pink);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-text {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-dark);
+            padding: 5rem 0 1rem;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo h2 {
+            font-size: 1.8rem;
+        }
+        
+        .footer-logo span {
+            color: var(--accent-pink);
+        }
+        
+        .footer-logo-img {
+            width: 40px;
+            height: 40px;
+            background-color: var(--off-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .footer-about p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--tertiary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--off-white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent-pink);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        .footer-heading {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent-pink);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li:not(:last-child) {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-link {
+            color: var(--off-white);
+            opacity: 0.7;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-link:hover {
+            color: var(--accent-pink);
+            opacity: 1;
+            padding-left: 5px;
+        }
+        
+        .contact-info div {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info i {
+            color: var(--accent-pink);
+        }
+        
+        .contact-info a {
+            color: var(--off-white);
+            opacity: 0.7;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-info a:hover {
+            color: var(--accent-pink);
+            opacity: 1;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(248, 248, 248, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-pink), transparent);
+            margin: 2rem 0;
+        }
+        
+        /* Fairy/Vintage Elements */
+        .fairy-accent {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 189, 224, 0.2) 0%, transparent 70%);
+            filter: blur(20px);
+            z-index: 0;
+        }
+        
+        .fa-sparkles:before {
+            content: '✨';
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .pulse {
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .about-content, .footer-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .about-image::before {
+                top: -15px;
+                left: -15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header .container {
+                padding: 0 1rem;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: var(--secondary-dark);
+                width: 100%;
+                padding: 2rem;
+                transform: translateY(-150%);
+                transition: var(--transition);
+                opacity: 0;
+                visibility: hidden;
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-img">
+                        <img src="logo.png" alt="IonyVerse Labs Logo" width="40" height="40">
+                    </div>
+                    <h1>Iony<span>Verse</span> Labs</h1>
+                </a>
+                
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="about_us_page.html">About Us</a></li>
+                        <!--<li><a href="#solutions">Solutions</a></li>-->
+                        <!--<li><a href="#blog">Blog</a></li>-->
+                    </ul>
+                </nav>
+                
+                <button class="contact-btn">Contact Us</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="fairy-accent" style="top: 20%; left: 10%;"></div>
+        <div class="fairy-accent" style="bottom: 30%; right: 15%;"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1>Elevate Your Digital <span>Security</span> with Elegance</h1>
+                <p>IonyVerse Labs combines cutting-edge cybersecurity technology with <span>innovative solutions</span> to protect your digital assets with grace and precision.</p>
+                <div class="hero-btns">
+                    <button class="primary-btn">Discover Solutions</button>
+                    <button class="secondary-btn">Book Consultation</button>
+                </div>
+            </div>
+        </div>
+        
+        <svg class="curved-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100">
+            <path fill="#1e1e1e" fill-opacity="1" d="M0,32L60,37.3C120,43,240,53,360,53.3C480,53,600,43,720,48C840,53,960,75,1080,80C1200,85,1320,75,1380,69.3L1440,64L1440,100L1380,100C1320,100,1200,100,1080,100C960,100,840,100,720,100C600,100,480,100,360,100C240,100,120,100,60,100L0,100Z"></path>
+        </svg>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Discover our comprehensive suite of cybersecurity solutions designed to protect your business with sophistication and reliability.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Threat Intelligence</h3>
+                        <p>Advanced monitoring and analysis of potential security threats to your systems with real-time alerts and elegant protection strategies.</p>
+                    </div>
+                    <a href="about_us_page.html" class="learn-more">Learn More <!--<i class="fas fa-arrow-right"></i>--></a>
+                   
+                </div>
+                
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3>Secure Infrastructure</h3>
+                        <p>Design and implementation of robust security architectures that balance accessibility with comprehensive protection mechanisms.</p>
+                    </div>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Application Security</h3>
+                        <p>Ensure your applications are built with security by design through our comprehensive code reviews and continuous testing.</p>
+                    </div>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h3>Identity Protection</h3>
+                        <p>Advanced identity and access management solutions that safeguard sensitive information while maintaining seamless user experiences.</p>
+                    </div>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>Cloud Security</h3>
+                        <p>Specialized protection for cloud environments ensuring your data remains secure across multiple platforms and service providers.</p>
+                    </div>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Security Training</h3>
+                        <p>Comprehensive education programs to empower your team with the knowledge and skills to recognize and address security concerns.</p>
+                    </div>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="Original Logo.jpg" alt="IonyVerse Labs Team" class="pulse">
+                </div>
+                
+                <div class="about-text">
+                    <h2>About IonyVerse Labs</h2>
+                    <p>At IonyVerse Labs, we believe cybersecurity should be both powerful and elegant. Founded by a team of passionate security experts, we've created a unique blend of cutting-edge protection mechanisms with an approachable and sophisticated service delivery.</p>
+                    <p>Our holistic approach combines technical excellence with beautiful, intuitive solutions that don't compromise on security. We work with businesses of all sizes to craft personalized security strategies that align with their specific needs and aesthetic values.</p>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="stats">
+                        <div class="stat-item floating">
+                            <div class="stat-num">98%</div>
+                            <div class="stat-text">Client Retention</div>
+                        </div>
+                        
+                        <div class="stat-item floating" style="animation-delay: 1s;">
+                            <div class="stat-num">200+</div>
+                            <div class="stat-text">Projects Completed</div>
+                        </div>
+                        
+                        <div class="stat-item floating" style="animation-delay: 2s;">
+                            <div class="stat-num">15+</div>
+                            <div class="stat-text">Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="footer-logo-img">
+                            <img src="logo.png" alt="IonyVerse Labs Logo" width="35" height="35">
+                        </div>
+                        <h2>Iony<span>Verse</span> Labs</h2>
+                    </div>
+                    <p>Pioneering elegant cybersecurity solutions that blend sophisticated protection with aesthetic design to secure your digital presence.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-wrapper">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link">Services
